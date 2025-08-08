@@ -1,14 +1,14 @@
 import type { NextConfig } from "next";
-// next.config.ts
-// const isProd = process.env.NODE_ENV === "production";
-// const repoName = "app-sudoku"; // <-- set your repo name
+
+const isProd = process.env.NODE_ENV === "production";
+// Optionally set this for GitHub Pages project sites: e.g. "/repo-name"
+const basePathEnv = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  output: 'export',
-  // basePath: isProd ? `/${repoName}` : undefined,
-  // assetPrefix: isProd ? `/${repoName}/` : undefined,
+  output: "export",
   images: { unoptimized: true },
+  basePath: isProd && basePathEnv ? basePathEnv : undefined,
+  assetPrefix: isProd && basePathEnv ? `${basePathEnv}/` : undefined,
 };
 
 export default nextConfig;
